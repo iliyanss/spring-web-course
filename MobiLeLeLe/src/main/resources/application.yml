@@ -8,9 +8,9 @@ spring:
         name: MobiLeLeLe
     datasource:
         driverClassName: com.mysql.cj.jdbc.Driver
-        password: Himikal30
+        password: g3mb1rd95
         url: jdbc:mysql://localhost:3306/MobiLeLeLe?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
-        username: root
+        username: pudev
     jpa:
         hibernate:
             ddl-auto: update
