@@ -2,23 +2,23 @@ package bg.softuni.MobiLeLeLe.models.entities;
 
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "brands")
 public class Brand extends BaseEntity{
 
     private String name;
-    private Set<Model> models = new HashSet<>();
+    private List<Model> models = new ArrayList<>();
 
 
     public Brand() {
 
     }
 
-    @OneToMany(mappedBy = "brand")
-    public Set<Model> getModels() {
+    @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    public List<Model> getModels() {
         return models;
     }
 
@@ -27,11 +27,21 @@ public class Brand extends BaseEntity{
         return name;
     }
 
-    public void setModels(Set<Model> models) {
-        this.models = models;
+    public Brand setName(String name) {
+        this.name = name;
+        return this;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Brand setModels(List<Model> models) {
+        this.models = models;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Brand{" +
+                "name='" + name + '\'' +
+                ", models=" + models +
+                '}';
     }
 }

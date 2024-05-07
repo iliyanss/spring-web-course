@@ -29,17 +29,17 @@ public class Model extends BaseEntity{
         return category;
     }
 
-    @Column(name = "image_url")
+    @Column(name = "image_url", nullable = false)
     public String getImageUrl() {
         return imageUrl;
     }
 
-    @Column(name = "start_year")
+    @Column(name = "start_year", nullable = false)
     public int getStartYear() {
         return startYear;
     }
 
-    @Column(name = "end_year")
+    @Column(name = "end_year", nullable = true)
     public int getEndYear() {
         return endYear;
     }
@@ -53,23 +53,40 @@ public class Model extends BaseEntity{
         this.brand = brand;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public void setImageUrl(String imageUrl) {
+    public Model setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
     }
 
-    public void setStartYear(int startYear) {
+    public Model setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Model setCategory(Category category) {
+        this.category = category;
+        return this;
+    }
+
+    public Model setStartYear(int startYear) {
         this.startYear = startYear;
+        return this;
     }
 
-    public void setEndYear(int endYear) {
+    public Model setEndYear(int endYear) {
         this.endYear = endYear;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Model{" +
+                "name='" + name + '\'' +
+                ", category=" + category +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", startYear=" + startYear +
+                ", endYear=" + endYear +
+                ", brand=" + brand +
+                '}';
     }
 }
