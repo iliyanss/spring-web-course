@@ -17,11 +17,10 @@ public abstract class BaseEntity {
         return id;
     }
 
-    @Column(nullable = false)
     public LocalDateTime getCreated() {
         return created;
     }
-    @Column(nullable = false)
+
     public LocalDateTime getModified() {
         return modified;
     }
