@@ -20,7 +20,7 @@ public class User extends BaseEntity{
     public User() {
 
     }
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     public String getEmail() {
         return email;
     }
@@ -28,11 +28,11 @@ public class User extends BaseEntity{
     public String getPassword() {
         return password;
     }
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     public String getFirstName() {
         return firstName;
     }
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     public String getLastName() {
         return lastName;
     }
