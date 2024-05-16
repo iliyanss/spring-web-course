@@ -26,7 +26,7 @@ public class User extends BaseEntity {
     private int age;
 
     public User() {
-
+        this.level= LevelEnum.BEGINNER;
     }
 
     public String getFullName() {
