@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>LinkedOut</title>
+    <th:block th:include="~{/fragments/head}"/>
+</head>
+<body>
+
+<th:block th:include="~{/fragments/header}"/>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <main class="jumbotron text-center rounded col-md-8 align-self-center">
+        <div class="justify-content-center">
+            <h1>Add Company</h1>
+        </div>
+        <form class="company-add-form"
+              th:action="@{/companies/add}"
+              th:method="post"
+              th:object="${companyDto}">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input th:field="*{name}"
+                       th:errorclass="is-invalid"
+                       type="text"
+                       class="form-control text-center"
+                       id="name"
+                       aria-describedby="nameHelp"
+                       name="name"/>
+                <small id="nameError"
+                       class="invalid-feedback bg-danger rounded">Name length must be between 2 and 10 symbols</small>
+            </div>
+
+            <div class="form-group">
+                <label for="town">Town</label>
+                <input th:field="*{town}"
+                       th:errorclass="is-invalid"
+                       type="text"
+                       class="form-control text-center"
+                       id="town"
+                       aria-describedby="town"
+                       name="town"/>
+                <small id="townError"
+                       class="invalid-feedback bg-danger rounded">Town length must be between 2 and 10 symbols</small>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input th:field="*{description}"
+                       th:errorclass="is-invalid"
+                       type="text"
+                       class="form-control text-center"
+                       id="description"
+                       aria-describedby="description"
+                       name="description"/>
+                <small id="descriptionError"
+                       class="invalid-feedback bg-danger rounded">Description length must be more than 10
+                    symbols</small>
+            </div>
+
+            <div class="form-group">
+                <label for="budget">Budget</label>
+                <input  th:field="*{budget}"
+                        th:errorclass="is-invalid"
+                        type="number"
+                        min="0"
+                        class="form-control text-center"
+                        id="budget"
+                        aria-describedby="budget"
+                        name="budget"/>
+                <small id="budgetError"
+                       class="invalid-feedback bg-danger rounded">Budget must be a positive number</small>
+            </div>
+
+            <button type="submit" class="btn btn-secondary">Add Company</button>
+        </form>
+    </main>
+</div>
+
+<th:block th:include="~{/fragments/footer}"/>
+</body>
+</html>

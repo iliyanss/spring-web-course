@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>LinkedOut</title>
+    <th:block th:include="~{/fragments/head}"/>
+</head>
+<body>
+
+<th:block th:include="~{/fragments/header}"/>
+
+<main>
+    <div class="container">
+        <h2 class="text-center text-dark bg-light rounded-circle mt-5">All employees</h2>
+        <hr style="width: 50%"/>
+        <div class='row mb-4 d-flex justify-content-around'>
+            <div th:each="employee : ${employees}" class="col-md-4 d-flex flex-column bg-text mb-3 rounded-circle">
+                <h2>Full Name: <span th:text="${employee.firstName + ' ' + employee.lastName}"></span></h2>
+                <h4>Job title: <span th:text="${employee.jobTitle}"></span></h4>
+                <h4>Birthdate: <span th:text="${employee.getBirthdate()}"></span></h4>
+                <h4><a class="btn-block" th:href="@{/employee-details/{id}(id=${employee.id})}">Detail info</a></h4>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<th:block th:include="~{/fragments/footer}"/>
+</body>
+</html>

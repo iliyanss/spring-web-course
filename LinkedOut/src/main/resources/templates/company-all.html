@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>LinkedOut</title>
+    <th:block th:include="~{/fragments/head}"/>
+</head>
+<body>
+
+<th:block th:include="~{/fragments/header}"/>
+
+<main>
+    <div class="container">
+        <h2 class="text-center text-dark bg-light rounded-circle mt-5">All companies</h2>
+        <hr style="width: 50%"/>
+        <div class='row mb-4 d-flex justify-content-around'>
+            <div th:each="company : ${companies}" class="col-md-4 d-flex flex-column bg-text mb-3 rounded-circle">
+                <h2>Company: <span th:text="${company.name}"></span></h2>
+                <h4>Town: <span th:text="${company.town}"></span></h4>
+                <h4>Description: <span th:text="${company.description.substring(0, 5)}"></span> ...</h4>
+                <h4><a class="btn-block" th:href="@{/company-details/{id}(id=${company.id})}">Detail info</a></h4>
+            </div>
+            </div>
+        </div>
+</main>
+
+<th:block th:include="~{/fragments/footer}"/>
+</body>
+</html>

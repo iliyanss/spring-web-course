@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>LinkedOut</title>
+    <th:block th:include="~{/fragments/head}"/>
+</head>
+<body>
+
+<th:block th:include="~{/fragments/header}"/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <main class="jumbotron text-center rounded col-md-8 align-self-center">
+            <div class="justify-content-center">
+                <h1>Add Employee</h1>
+            </div>
+            <form class="employee-add-form"
+                  th:action="@{/employees/add}"
+                  th:method="post"
+                  th:object="${employeeDto}">
+
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input th:field="*{firstName}"
+                           th:errorclass="is-invalid"
+                           type="text"
+                           class="form-control text-center"
+                           id="firstName"
+                           aria-describedby="firstName"
+                           name="firstName"
+                           required/>
+                    <small id="firstNameError"
+                           class="invalid-feedback bg-danger rounded">First Name length must be at least 2
+                        symbols</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input th:field="*{lastName}"
+                           th:errorclass="is-invalid"
+                           type="text"
+                           class="form-control text-center"
+                           id="lastName"
+                           aria-describedby="lastName"
+                           name="lastName"
+                           required/>
+                    <small id="lastNameError"
+                           class="invalid-feedback bg-danger rounded">Last Name length must be at least 2
+                        symbols</small>
+                </div>
+
+                <fieldset class="form-group">
+                    <legend>Choose Education Level</legend>
+                    <div class="form-check">
+                        <input th:field="*{educationLevel}"
+                               th:errorclass="is-invalid"
+                               type="radio"
+                               class="form-check-input"
+                               id="educationLevelMaster"
+                               value="Master"
+                               name="educationLevel"
+                               required/>
+                        <label class="form-check-label" for="educationLevelMaster">
+                            Master
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input th:field="*{educationLevel}"
+                               th:errorclass="is-invalid"
+                               type="radio"
+                               class="form-check-input"
+                               id="educationLevelBachelor"
+                               value="Bachelor"
+                               name="educationLevel"
+                               required/>
+                        <label class="form-check-label" for="educationLevelBachelor">
+                            Bachelor
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input th:field="*{educationLevel}"
+                               th:errorclass="is-invalid"
+                               type="radio"
+                               class="form-check-input"
+                               id="educationLevelSecondary"
+                               value="Secondary"
+                               name="educationLevel"
+                               required/>
+                        <label class="form-check-label" for="educationLevelSecondary">
+                            Secondary
+                        </label>
+                    </div>
+                    <small id="educationLevelError"
+                           class="invalid-feedback bg-danger rounded">You must choose your education level</small>
+                </fieldset>
+
+                <div class="form-group">
+                    <label for="company"><h5>All available companies</h5></label>
+                    <select th:field="*{company}" class="form-control text-center" id="company" name="company" required>
+                        <option th:each="company : ${companies}"
+                                th:value="${company.id}"
+                                th:text="${company.name}">Company Name</option>
+                    </select>
+                    <small id="companyError"
+                           class="invalid-feedback bg-danger rounded">You must choose a company</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="jobTitle">Job Title</label>
+                    <input th:field="*{jobTitle}"
+                           th:errorclass="is-invalid"
+                           type="text"
+                           class="form-control text-center"
+                           id="jobTitle"
+                           aria-describedby="jobTitle"
+                           name="jobTitle"
+                           required/>
+                    <small id="jobTitleLevelError"
+                           class="invalid-feedback bg-danger rounded">You must choose your job title</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="birthDate">Birth Date</label>
+                    <input th:field="*{birthDate}"
+                           th:errorclass="is-invalid"
+                           type="date"
+                           class="form-control text-center"
+                           id="birthDate"
+                           aria-describedby="birthDate"
+                           name="birthDate"
+                           required/>
+                    <small id="birthDateError"
+                           class="invalid-feedback bg-danger rounded">You must choose your birth date</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="salary">Salary</label>
+                    <input th:field="*{salary}"
+                           th:errorclass="is-invalid"
+                           type="number"
+                           min="0"
+                           class="form-control text-center"
+                           id="salary"
+                           aria-describedby="salary"
+                           name="salary"
+                           required/>
+                    <small id="salaryError"
+                           class="invalid-feedback bg-danger rounded">Salary must be a positive number</small>
+                </div>
+
+                <button type="submit" class="btn btn-secondary">Add Employee</button>
+            </form>
+        </main>
+    </div>
+</div>
+
+<th:block th:include="~{/fragments/footer}"/>
+</body>
+</html>

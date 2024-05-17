@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>LinkedOut</title>
+    <th:block th:include="~{/fragments/head}"/>
+</head>
+<body>
+
+<th:block th:include="~{/fragments/header}"/>
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <main class="jumbotron text-center rounded col-md-12 align-self-center">
+                <div class="justify-content-center">
+                    <h1>Employee Details</h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 bg-dark">
+                        <h2>Employee</h2>
+                        <h4>First Name: <span th:text="${employee.getFirstName()}"> </span></h4>
+                        <h4>Last Name: <span th:text="${employee.getLastName()}"> </span></h4>
+                        <h4>Education Level: <span th:text="${employee.getEducationLevel()}"> </span></h4>
+                        <h4>Job title: <span th:text="${employee.getJobTitle()}"> </span></h4>
+                        <h4>Birthdate: <span th:text="${employee.getBirthdate()}"> </span></h4>
+                        <h4>Salary: <span th:text="${employee.getSalary() + '$'}"> </span></h4>
+                        <h4>Company: <span th:text="${employee.getCompany().getName()}"> </span></h4>
+                        <div class="align-bottom">
+						<a class="btn btn-danger align-bottom"
+                                                     href="/">Delete employee</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 bg-dark"><img src="/pic/employee.png" height="350px"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{/fragments/footer}"/>
+</body>
+</html>
