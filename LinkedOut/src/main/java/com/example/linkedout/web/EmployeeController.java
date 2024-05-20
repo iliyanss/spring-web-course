@@ -1,6 +1,5 @@
 package com.example.linkedout.web;
 
-import com.example.linkedout.model.dtos.CompanyDto;
 import com.example.linkedout.model.dtos.EmployeeDto;
 import com.example.linkedout.model.entities.Company;
 import com.example.linkedout.model.entities.Employee;
@@ -9,14 +8,10 @@ import com.example.linkedout.service.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -29,6 +24,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
         this.companyService = companyService;
     }
+
     @ModelAttribute("companies")
     public List<Company> companies() {
         return this.companyService.getAllCompanies();
@@ -52,8 +48,8 @@ public class EmployeeController {
     @PostMapping("/employees/add")
     public String addEmployee(@Valid EmployeeDto employeeDto,
                               BindingResult bindingResult,
-                              RedirectAttributes redirectAttributes){
-        if (bindingResult.hasErrors()){
+                              RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("employeeDto", employeeDto);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.employeeDto", bindingResult);
             return "redirect:/employees/add";
@@ -63,7 +59,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/all")
-    public String allEmployees(){
+    public String allEmployees() {
         return "employee-all";
     }
 
@@ -74,4 +70,9 @@ public class EmployeeController {
         return "employee-details";
     }
 
+    @RequestMapping(value = "/employee/{id}", method = RequestMethod.DELETE)
+    public String deleteEmployee(@PathVariable("id") String id) {
+        employeeService.deleteEmployee(id);
+        return "redirect:/employees/all";
+    }
 }

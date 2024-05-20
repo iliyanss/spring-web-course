@@ -29,7 +29,7 @@ public class Company {
     @Column(nullable = false)
     private String town;
 
-    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Employee> employees;
 
     public Company() {

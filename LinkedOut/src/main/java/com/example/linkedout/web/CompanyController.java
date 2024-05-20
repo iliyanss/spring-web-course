@@ -6,12 +6,10 @@ import com.example.linkedout.service.CompanyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -57,6 +55,11 @@ public class CompanyController {
         return "company-all";
     }
 
+    @RequestMapping(value = "/company/{id}", method = RequestMethod.DELETE)
+    public String deleteEmployee(@PathVariable("id") String id) {
+        companyService.deleteCompany(id);
+        return "redirect:/companies/all";
+    }
 
 
     @GetMapping("/company-details/{id}")

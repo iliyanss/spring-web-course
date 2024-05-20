@@ -7,6 +7,7 @@ import com.example.linkedout.repository.CompanyRepository;
 import com.example.linkedout.repository.EmployeeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,5 +47,13 @@ public class EmployeeService {
 
     public Optional<Employee> findById(String id) {
         return this.employeeRepository.findById(id);
+    }
+
+    @Transactional
+    public void deleteEmployee(String id) {
+        Employee employee = this.employeeRepository.getById(id);
+        employee.getCompany().getEmployees().remove(employee);
+        employee.setCompany(null);
+        this.employeeRepository.deleteById(employee.getId());
     }
 }

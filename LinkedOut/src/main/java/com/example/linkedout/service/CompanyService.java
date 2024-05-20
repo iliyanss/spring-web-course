@@ -6,6 +6,7 @@ import com.example.linkedout.repository.CompanyRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,10 +29,18 @@ public class CompanyService {
         Company company = modelMapper.map(companyDto, Company.class);
         this.companyRepository.save(company);
     }
-    public List<Company> getAllCompanies(){
+
+    public List<Company> getAllCompanies() {
         return companyRepository.findAll();
     }
+
     public Optional<Company> findById(String id) {
         return this.companyRepository.findById(id);
+
     }
+
+    public void deleteCompany(String id) {
+        this.companyRepository.deleteById(id);
+    }
+
 }

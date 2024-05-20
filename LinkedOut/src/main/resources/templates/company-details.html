@@ -24,7 +24,10 @@
                         <h4>Description: <span th:text="${company.description}"></span></h4>
                         <h4>Budget: <span th:text="${company.budget}"></span></h4>
                         <div class="align-bottom">
-                            <a class="btn btn-danger align-bottom" href="/">Delete company</a>
+                            <form th:action="@{/company/{id}(id=${company.id})}" method="post">
+                                <input type="hidden" name="_method" value="delete"/>
+                                <button type="submit" class="btn btn-danger align-bottom">Delete company</button>
+                            </form>
                         </div>
                     </div>
                 </div>
