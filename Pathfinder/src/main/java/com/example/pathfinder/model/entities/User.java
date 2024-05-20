@@ -16,6 +16,7 @@ public class User extends BaseEntity {
     private String password;
     @Column(unique = true)
     private String email;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
     @Enumerated(EnumType.STRING)
