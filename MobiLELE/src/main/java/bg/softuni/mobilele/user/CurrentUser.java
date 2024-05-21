@@ -9,6 +9,7 @@ public class CurrentUser {
 
     private String firstName;
     private boolean loggedIn;
+    private String email;
 
     public CurrentUser() {
 
@@ -35,8 +36,18 @@ public class CurrentUser {
     public void clear(){
         loggedIn = false;
         firstName = null;
+        email = null;
     }
     public boolean isAnonymous(){
         return !isLoggedIn();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public CurrentUser setEmail(String email) {
+        this.email = email;
+        return this;
     }
 }

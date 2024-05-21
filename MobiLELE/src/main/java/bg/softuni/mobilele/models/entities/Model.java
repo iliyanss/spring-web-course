@@ -11,7 +11,7 @@ public class Model extends BaseEntity{
     private Category category;
     private String imageUrl;
     private int startYear;
-    private int endYear;
+    private Integer endYear;
     private Brand brand;
 
     public Model() {
