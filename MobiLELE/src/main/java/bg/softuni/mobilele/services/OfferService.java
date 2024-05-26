@@ -37,7 +37,7 @@ public class OfferService {
     public void addOffer(AddOfferDto addOfferDto){
         Offer offer = this.mapper.offerDtoToOffer(addOfferDto);
         User user = userRepository.findByEmail(currentUser.getEmail()).orElse(null);
-        Model model = modelRepository.findById(addOfferDto.getModelId()).orElseThrow();
+        Model model = modelRepository.findById(addOfferDto.getModelId()).orElse(null);
         offer.setModel(model);
         offer.setUser(user);
         offerRepository.save(offer);
