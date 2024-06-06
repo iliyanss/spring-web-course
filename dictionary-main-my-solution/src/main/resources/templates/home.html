@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/commons::head}"></head>
+<body>
+<header th:replace="~{fragments/commons::nav}"></header>
+<main>
+
+    <div class="container bg-blur rounded mt-3 mb-4">
+        <h1>All words</h1>
+        <div class="row mt-3 mb-3">
+
+            <div class="col-5 bg-dark rounded m-auto" style="height: 30vh; overflow: auto" th:object="${allGermanWords}">
+                <h3 class="mySticky bg-gray text-dark rounded" th:text="|German: ${allGermanWords.size()}|"></h3>
+                <div class="mt-3 rounded badge-warning">
+                    <img class="mr-2" src="/img/german.png" alt="Flag" width="20px" height="20px">
+                    <th:block th:each="word, iterStat : ${allGermanWords}">
+                        <span th:text="'German Term: ' + ${word.term} + ' | Translation: ' + ${word.translation}"></span>
+                        <br>
+                        <span th:text="'Example: ' + ${word.example}"></span>
+                        <br>
+                        <span th:text="'Added by: ' + ${word.addedBy.username} + ' on ' + ${word.inputDate}"></span>
+                        <a class="ml-3 text-danger" th:href="@{|/remove-word/${word.id}|}">Remove</a>
+                        <th:block th:if="${!iterStat.last}">
+                            <br>
+                        </th:block>
+                    </th:block>
+                </div>
+            </div>
+
+            <div class="col-5 bg-dark rounded m-auto" style="height: 30vh; overflow: auto" th:object="${allSpanishWords}">
+                <h3 class="mySticky bg-gray text-dark rounded" th:text="|Spanish: ${allSpanishWords.size()}|"></h3>
+                <div class="mt-3 rounded badge-secondary">
+                    <img class="mr-2" src="/img/spanish.png" alt="Flag" width="20px" height="20px">
+                    <th:block th:each="word, iterStat : ${allSpanishWords}">
+                        <span th:text="'Spanish Term: ' + ${word.term} + ' | Translation: ' + ${word.translation}"></span>
+                        <br>
+                        <span th:text="'Example: ' + ${word.example}"></span>
+                        <br>
+                        <span th:text="'Added by: ' + ${word.addedBy.username} + ' on ' + ${word.inputDate}"></span>
+                        <a class="ml-3 text-danger" th:href="@{|/remove-word/${word.id}|}">Remove</a>
+                        <th:block th:if="${!iterStat.last}">
+                            <br>
+                        </th:block>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3 mb-3">
+            <div class="col-5 bg-dark rounded m-auto" style="height: 30vh; overflow: auto" th:object="${allFrenchWords}">
+                <h3 class="mySticky bg-gray text-dark rounded" th:text="|French: ${allFrenchWords.size()}|"></h3>
+                <div class="mt-3 rounded badge-info">
+                    <img class="mr-2" src="/img/french.png" alt="Flag" width="20px" height="20px">
+                    <th:block th:each="word, iterStat : ${allFrenchWords}">
+                        <span th:text="'French Term: ' + ${word.term} + ' | Translation: ' + ${word.translation}"></span>
+                        <br>
+                        <span th:text="'Example: ' + ${word.example}"></span>
+                        <br>
+                        <span th:text="'Added by: ' + ${word.addedBy.username} + ' on ' + ${word.inputDate}"></span>
+                        <a class="ml-3 text-danger" th:href="@{|/remove-word/${word.id}|}">Remove</a>
+                        <th:block th:if="${!iterStat.last}">
+                            <br>
+                        </th:block>
+                    </th:block>
+                </div>
+            </div>
+
+            <div class="col-5 bg-dark rounded m-auto" style="height: 30vh; overflow: auto" th:object="${allItalianWords}">
+                <h3 class="mySticky bg-gray text-dark rounded" th:text="|Italian: ${allItalianWords.size()}|"></h3>
+                <div class="mt-3 rounded badge-success">
+                    <img class="mr-2" src="/img/italian.png" alt="Flag" width="20px" height="20px">
+                    <th:block th:each="word, iterStat : ${allItalianWords}">
+                        <span th:text="'Italian Term: ' + ${word.term} + ' | Translation: ' + ${word.translation}"></span>
+                        <br>
+                        <span th:text="'Example: ' + ${word.example}"></span>
+                        <br>
+                        <span th:text="'Added by: ' + ${word.addedBy.username} + ' on ' + ${word.inputDate}"></span>
+                        <a class="ml-3 text-danger" th:href="@{|/remove-word/${word.id}|}">Remove</a>
+                        <th:block th:if="${!iterStat.last}">
+                            <br>
+                        </th:block>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+        <a th:href="@{/remove-all-words}" class="btn btn-danger" th:text="'Remove all ' + ${allWordsCount} + ' words'"></a>
+    </div>
+</main>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+</body>
+</html>
