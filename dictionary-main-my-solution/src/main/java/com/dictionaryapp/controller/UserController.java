@@ -17,7 +17,6 @@ import javax.validation.Valid;
 
 @Controller
 public class UserController {
-
     private UserService userService;
     private LoggedUser loggedUser;
 
