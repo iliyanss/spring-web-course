@@ -1,45 +1,71 @@
 package bg.softuni.mobilele.services;
 
-import bg.softuni.mobilele.config.Mapper;
-import bg.softuni.mobilele.models.dtos.AddOfferDto;
-import bg.softuni.mobilele.models.dtos.BrandDto;
-import bg.softuni.mobilele.models.entities.Model;
-import bg.softuni.mobilele.models.entities.Offer;
-import bg.softuni.mobilele.models.entities.User;
-import bg.softuni.mobilele.repositories.ModelRepository;
+import bg.softuni.mobilele.models.dtos.AddOfferDTO;
+import bg.softuni.mobilele.models.dtos.OfferDetailsDTO;
+import bg.softuni.mobilele.models.dtos.OfferSummaryDTO;
+import bg.softuni.mobilele.models.entities.OfferEntity;
+
 import bg.softuni.mobilele.repositories.OfferRepository;
-import bg.softuni.mobilele.repositories.UserRepository;
-import bg.softuni.mobilele.user.CurrentUser;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class OfferService {
 
     private final OfferRepository offerRepository;
-    private final Mapper mapper;
-    private final UserRepository userRepository;
-    private final CurrentUser currentUser;
-    private final ModelRepository modelRepository;
 
-
-
-    public OfferService(OfferRepository offerRepository, Mapper mapper, UserRepository userRepository, CurrentUser currentUser, ModelRepository modelRepository) {
+    public OfferService(OfferRepository offerRepository) {
         this.offerRepository = offerRepository;
-        this.mapper = mapper;
-        this.userRepository = userRepository;
-        this.currentUser = currentUser;
-        this.modelRepository = modelRepository;
     }
 
-    public void addOffer(AddOfferDto addOfferDto){
-        Offer offer = this.mapper.offerDtoToOffer(addOfferDto);
-        User user = userRepository.findByEmail(currentUser.getEmail()).orElse(null);
-        Model model = modelRepository.findById(addOfferDto.getModelId()).orElse(null);
-        offer.setModel(model);
-        offer.setUser(user);
-        offerRepository.save(offer);
+    public long createOffer(AddOfferDTO addOfferDTO) {
+        return offerRepository.save(map(addOfferDTO)).getId();
+    }
+
+    public void deleteOffer(long orderId) {
+        offerRepository.deleteById(orderId);
+    }
+
+    public OfferDetailsDTO getOfferDetails(Long id) {
+
+        return this.offerRepository
+                .findById(id)
+                .map(OfferService::toOfferDetails)
+                .orElseThrow();
+    }
+
+    public List<OfferSummaryDTO> getAllOffersSummary() {
+        return offerRepository
+                .findAll()
+                .stream()
+                .map(OfferService::toOfferSummary)
+                .toList();
+    }
+
+    private static OfferSummaryDTO toOfferSummary(OfferEntity offerEntity) {
+        // todo use mapping library
+        return new OfferSummaryDTO(offerEntity.getId(),
+                offerEntity.getDescription(),
+                offerEntity.getMileage(),
+                offerEntity.getEngine());
+    }
+
+
+    private static OfferDetailsDTO toOfferDetails(OfferEntity offerEntity) {
+        // todo use mapping library
+        return new OfferDetailsDTO(offerEntity.getId(),
+                offerEntity.getDescription(),
+                offerEntity.getMileage(),
+                offerEntity.getEngine());
+    }
+
+    private static OfferEntity map(AddOfferDTO addOfferDTO) {
+        // todo - use mapped (e.g. ModelMapper)
+        return new OfferEntity()
+                .setDescription(addOfferDTO.description())
+                .setEngine(addOfferDTO.engineType())
+                .setMileage(addOfferDTO.mileage());
     }
 }

@@ -1,70 +1,68 @@
 package bg.softuni.mobilele.services;
 
-import bg.softuni.mobilele.config.Mapper;
 import bg.softuni.mobilele.models.dtos.UserLoginDTO;
-import bg.softuni.mobilele.models.dtos.UserRegisterDTO;
-import bg.softuni.mobilele.models.entities.User;
+import bg.softuni.mobilele.models.dtos.UserRegistrationDTO;
+import bg.softuni.mobilele.models.entities.UserEntity;
 import bg.softuni.mobilele.repositories.UserRepository;
-import bg.softuni.mobilele.user.CurrentUser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.dao.DataIntegrityViolationException;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
+    private final ModelMapper modelMapper;
+    private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
-    private Logger logger = LoggerFactory.getLogger(UserService.class);
-    private CurrentUser currentUser;
-    private PasswordEncoder passwordEncoder;
-    private final Mapper mapper;
+    private final CurrentUser currentUser;
 
-    public UserService(UserRepository userRepository,
-                       CurrentUser currentUser,
+    public UserService(ModelMapper modelMapper,
                        PasswordEncoder passwordEncoder,
-                       Mapper mapper) {
+                       UserRepository userRepository,
+                       CurrentUser currentUser) {
+        this.modelMapper = modelMapper;
+        this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.currentUser = currentUser;
-        this.passwordEncoder = passwordEncoder;
-        this.mapper = mapper;
     }
 
-    public boolean login(UserLoginDTO dto) {
-        User byEmail = userRepository.findByEmail(dto.getUsername()).orElse(null);
-        if (byEmail == null) {
-            logger.info("User with [{}] not found.", dto.getUsername());
+    public void registerUser(UserRegistrationDTO userRegistration) {
+        userRepository.save(map(userRegistration));
+    }
+
+    public boolean login(UserLoginDTO userLoginDTO) {
+
+        UserEntity userEntity = userRepository
+                .findByEmail(userLoginDTO.email())
+                .orElse(null);
+
+        if (userLoginDTO.password() == null ||
+                userEntity == null ||
+                userEntity.getPassword() == null) {
             return false;
         }
-        String rawPassword = dto.getPassword();
-        String hashedPassword = byEmail.getPassword();
-        boolean success = passwordEncoder.matches(rawPassword, hashedPassword);
+
+        boolean success = passwordEncoder.matches(userLoginDTO.password(), userEntity.getPassword());
+
         if (success) {
-            login(byEmail);
+            currentUser.setLoggedIn(true);
+            currentUser.setFullName(userEntity.getFirstName() + " " + userEntity.getLastName());
         } else {
-            logout();
+            currentUser.clean();
         }
-        return success;
+
+        return false;
     }
 
-    public void login(User user) {
-        currentUser
-                .setLoggedIn(true)
-                .setFirstName(user.getFirstName())
-                .setEmail(user.getEmail());
+    private UserEntity map(UserRegistrationDTO userRegistrationDTO) {
+        UserEntity mappedEntity = modelMapper.map(userRegistrationDTO, UserEntity.class);
+
+        mappedEntity.setPassword(passwordEncoder.encode(userRegistrationDTO.getPassword()));
+
+        return mappedEntity;
     }
 
     public void logout() {
-        currentUser.clear();
-    }
-
-    public void registerAndLogin(UserRegisterDTO userRegisterDTO) {
-        User user = mapper.userDtoToUser(userRegisterDTO);
-        user.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
-
-        this.userRepository.save(user);
-        login(user);
-
+        currentUser.clean();
     }
 }

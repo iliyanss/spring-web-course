@@ -1,12 +1,11 @@
 package bg.softuni.mobilele.repositories;
 
-import bg.softuni.mobilele.models.entities.Offer;
+import bg.softuni.mobilele.models.entities.OfferEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
 
 @Repository
-public interface OfferRepository extends JpaRepository<Offer, UUID> {
+public interface OfferRepository extends JpaRepository<OfferEntity, Long> {
 
 }
