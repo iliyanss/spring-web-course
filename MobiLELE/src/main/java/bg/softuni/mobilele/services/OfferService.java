@@ -5,7 +5,9 @@ import bg.softuni.mobilele.models.dtos.OfferDetailsDTO;
 import bg.softuni.mobilele.models.dtos.OfferSummaryDTO;
 import bg.softuni.mobilele.models.entities.OfferEntity;
 
+import bg.softuni.mobilele.models.entities.TransmissionEntity;
 import bg.softuni.mobilele.repositories.OfferRepository;
+import bg.softuni.mobilele.repositories.TransmissionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,9 +17,13 @@ import java.util.List;
 public class OfferService {
 
     private final OfferRepository offerRepository;
+    private final TransmissionRepository transmissionRepository;
+    private final ExRateService exRateService;
 
-    public OfferService(OfferRepository offerRepository) {
+    public OfferService(OfferRepository offerRepository, TransmissionRepository transmissionRepository, ExRateService exRateService) {
         this.offerRepository = offerRepository;
+        this.transmissionRepository = transmissionRepository;
+        this.exRateService = exRateService;
     }
 
     public long createOffer(AddOfferDTO addOfferDTO) {
@@ -32,7 +38,7 @@ public class OfferService {
 
         return this.offerRepository
                 .findById(id)
-                .map(OfferService::toOfferDetails)
+                .map(this::toOfferDetails)
                 .orElseThrow();
     }
 
@@ -49,23 +55,34 @@ public class OfferService {
         return new OfferSummaryDTO(offerEntity.getId(),
                 offerEntity.getDescription(),
                 offerEntity.getMileage(),
-                offerEntity.getEngine());
+                offerEntity.getEngine(),
+                offerEntity.getTransmission().getName());
     }
 
 
-    private static OfferDetailsDTO toOfferDetails(OfferEntity offerEntity) {
+    private OfferDetailsDTO toOfferDetails(OfferEntity offerEntity) {
         // todo use mapping library
         return new OfferDetailsDTO(offerEntity.getId(),
                 offerEntity.getDescription(),
                 offerEntity.getMileage(),
-                offerEntity.getEngine());
+                offerEntity.getEngine(),
+                offerEntity.getYear(),
+                offerEntity.getTransmission().getName(),
+                offerEntity.getImageUrl(),
+                offerEntity.getPrice(),
+                exRateService.allSupportedRates());
     }
 
-    private static OfferEntity map(AddOfferDTO addOfferDTO) {
+    private OfferEntity map(AddOfferDTO addOfferDTO) {
         // todo - use mapped (e.g. ModelMapper)
+        TransmissionEntity transmission = transmissionRepository.findByName(addOfferDTO.transmission());
         return new OfferEntity()
                 .setDescription(addOfferDTO.description())
                 .setEngine(addOfferDTO.engineType())
-                .setMileage(addOfferDTO.mileage());
+                .setMileage(addOfferDTO.mileage())
+                .setPrice(addOfferDTO.price())
+                .setYear(addOfferDTO.year())
+                .setImageUrl(addOfferDTO.imageUrl())
+                .setTransmission(transmission);
     }
 }

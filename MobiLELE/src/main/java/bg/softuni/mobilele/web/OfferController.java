@@ -1,7 +1,9 @@
 package bg.softuni.mobilele.web;
 
 import bg.softuni.mobilele.models.dtos.AddOfferDTO;
+import bg.softuni.mobilele.models.entities.TransmissionEntity;
 import bg.softuni.mobilele.models.enums.EngineTypeEnum;
+import bg.softuni.mobilele.repositories.TransmissionRepository;
 import bg.softuni.mobilele.services.OfferService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,16 +11,20 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/offers")
 public class OfferController {
 
     private final OfferService offerService;
+    private TransmissionRepository transmissionRepository;
 
-    public OfferController(OfferService offerService) {
+    public OfferController(OfferService offerService, TransmissionRepository transmissionRepository) {
         this.offerService = offerService;
+        this.transmissionRepository = transmissionRepository;
     }
 
     @ModelAttribute("allEngineTypes")

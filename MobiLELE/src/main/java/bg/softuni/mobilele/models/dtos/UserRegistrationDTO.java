@@ -1,21 +1,22 @@
 package bg.softuni.mobilele.models.dtos;
 
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public class UserRegistrationDTO {
-    @NotEmpty
-    @Size(min = 5, max = 20)
+    @NotNull
+    @Size(min = 5, max = 20, message = "First name should be between 5 and 20 symbols!")
     private String firstName;
-    @NotEmpty
-    @Size(min = 5, max = 20)
+    @NotNull
+    @Size(min = 5, max = 20, message = "Last name should be between 5 and 20 symbols!")
     private String lastName;
-    @NotEmpty
+    @NotNull
+    @Size(min = 5, max = 20, message = "Password  should be between 5 and 20 symbols!")
     private String password;
-    @NotEmpty
-    @Email
+    @NotNull
+    @Email(message = "You should enter a valid email!")
     private String email;
     public String getFirstName() {
         return firstName;

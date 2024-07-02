@@ -10,4 +10,5 @@ public class MobiLeleApplication {
 		SpringApplication.run(MobiLeleApplication.class, args);
 	}
 
+
 }

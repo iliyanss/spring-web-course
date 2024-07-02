@@ -1,7 +1,7 @@
 package bg.softuni.mobilele.models.entities;
 
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 @MappedSuperclass
 public class BaseEntity {
 

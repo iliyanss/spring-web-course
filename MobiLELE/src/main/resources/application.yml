@@ -3,7 +3,7 @@ spring:
         driverClassName: com.mysql.cj.jdbc.Driver
         url: "jdbc:mysql://localhost:3306/mobileAPP?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
         username: root
-        password: g3mb1rd95
+        password: -----
     servlet:
         multipart:
             max-file-size: 1MB
@@ -28,8 +28,9 @@ spring:
             hibernate:
                 format_sql: true
         defer-datasource-initialization: true
-    #Cloudinary Properties
-    #cloudinary:
-    #api-key:
-    #api-secret:
-    #cloud-name:
+
+forex:
+    api:
+        key: ${FOREX_API_KEY:}
+        url: "https://openexchangerates.org/api/latest.json?app_id={app_id}"
+        base: "USD"

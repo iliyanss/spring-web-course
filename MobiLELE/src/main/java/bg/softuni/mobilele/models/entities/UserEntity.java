@@ -1,17 +1,17 @@
 package bg.softuni.mobilele.models.entities;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
     @Column(unique = true)
     private String email;
-
+    @Column(nullable = false)
     private String password;
-
+    @Column(nullable = false)
     private String firstName;
-
+    @Column(nullable = false)
     private String lastName;
 
     public String getEmail() {

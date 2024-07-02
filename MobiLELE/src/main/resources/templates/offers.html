@@ -32,8 +32,9 @@
                 <li class="list-group-item">
                     <div class="card-text">• Mileage <span th:text="*{mileage}"></span></div>
                     <div class="card-text"><span>• TODO: Price</span></div>
-                    <div class="card-text">• Engine type<span th:text="*{engineType()}"></span></div>
-                    <div class="card-text"><span>• TODO: Transmission type</span></div>
+                    <div class="card-text">• Engine type<span th:text="*{engineType().name()}"></span></div>
+                    <div class="card-text"><span>• Transmission type <span th:text="*{transmissionEnum().name()}"</span>
+                    </div>
                 </li>
             </ul>
             <div class="card-body">
