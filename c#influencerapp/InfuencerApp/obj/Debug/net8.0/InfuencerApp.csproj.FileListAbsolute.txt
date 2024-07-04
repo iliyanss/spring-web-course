@@ -1,0 +1,15 @@
+D:\MySpace\MySpace\neshta\spring-web-repo\spring-web\c#influencerapp\InfuencerApp\bin\Debug\net8.0\InfuencerApp.exe
+D:\MySpace\MySpace\neshta\spring-web-repo\spring-web\c#influencerapp\InfuencerApp\bin\Debug\net8.0\InfuencerApp.deps.json
+D:\MySpace\MySpace\neshta\spring-web-repo\spring-web\c#influencerapp\InfuencerApp\bin\Debug\net8.0\InfuencerApp.runtimeconfig.json
+D:\MySpace\MySpace\neshta\spring-web-repo\spring-web\c#influencerapp\InfuencerApp\bin\Debug\net8.0\InfuencerApp.dll
+D:\MySpace\MySpace\neshta\spring-web-repo\spring-web\c#influencerapp\InfuencerApp\bin\Debug\net8.0\InfuencerApp.pdb
+D:\MySpace\MySpace\neshta\spring-web-repo\spring-web\c#influencerapp\InfuencerApp\obj\Debug\net8.0\InfuencerApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\MySpace\MySpace\neshta\spring-web-repo\spring-web\c#influencerapp\InfuencerApp\obj\Debug\net8.0\InfuencerApp.AssemblyInfoInputs.cache
+D:\MySpace\MySpace\neshta\spring-web-repo\spring-web\c#influencerapp\InfuencerApp\obj\Debug\net8.0\InfuencerApp.AssemblyInfo.cs
+D:\MySpace\MySpace\neshta\spring-web-repo\spring-web\c#influencerapp\InfuencerApp\obj\Debug\net8.0\InfuencerApp.csproj.CoreCompileInputs.cache
+D:\MySpace\MySpace\neshta\spring-web-repo\spring-web\c#influencerapp\InfuencerApp\obj\Debug\net8.0\InfuencerApp.sourcelink.json
+D:\MySpace\MySpace\neshta\spring-web-repo\spring-web\c#influencerapp\InfuencerApp\obj\Debug\net8.0\InfuencerApp.dll
+D:\MySpace\MySpace\neshta\spring-web-repo\spring-web\c#influencerapp\InfuencerApp\obj\Debug\net8.0\refint\InfuencerApp.dll
+D:\MySpace\MySpace\neshta\spring-web-repo\spring-web\c#influencerapp\InfuencerApp\obj\Debug\net8.0\InfuencerApp.pdb
+D:\MySpace\MySpace\neshta\spring-web-repo\spring-web\c#influencerapp\InfuencerApp\obj\Debug\net8.0\InfuencerApp.genruntimeconfig.cache
+D:\MySpace\MySpace\neshta\spring-web-repo\spring-web\c#influencerapp\InfuencerApp\obj\Debug\net8.0\ref\InfuencerApp.dll
