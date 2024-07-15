@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\MySpace\\MySpace\\neshta\\spring-web-repo\\spring-web\\c#influencerapp\\InfuencerApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F1B75E7D-2183-4D2C-8C87-2074B3603E4F}|InfuencerApp.csproj|d:\\myspace\\myspace\\neshta\\spring-web-repo\\spring-web\\c#influencerapp\\infuencerapp\\core\\controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1B75E7D-2183-4D2C-8C87-2074B3603E4F}|InfuencerApp.csproj|solutionrelative:core\\controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1B75E7D-2183-4D2C-8C87-2074B3603E4F}|InfuencerApp.csproj|d:\\myspace\\myspace\\neshta\\spring-web-repo\\spring-web\\c#influencerapp\\infuencerapp\\repositories\\contracts\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1B75E7D-2183-4D2C-8C87-2074B3603E4F}|InfuencerApp.csproj|solutionrelative:repositories\\contracts\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "D:\\MySpace\\MySpace\\neshta\\spring-web-repo\\spring-web\\c#influencerapp\\InfuencerApp\\Repositories\\Contracts\\IRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Contracts\\IRepository.cs",
+              "ToolTip": "D:\\MySpace\\MySpace\\neshta\\spring-web-repo\\spring-web\\c#influencerapp\\InfuencerApp\\Repositories\\Contracts\\IRepository.cs",
+              "RelativeToolTip": "Repositories\\Contracts\\IRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-08T16:43:39.505Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Controller.cs",
+              "DocumentMoniker": "D:\\MySpace\\MySpace\\neshta\\spring-web-repo\\spring-web\\c#influencerapp\\InfuencerApp\\Core\\Controller.cs",
+              "RelativeDocumentMoniker": "Core\\Controller.cs",
+              "ToolTip": "D:\\MySpace\\MySpace\\neshta\\spring-web-repo\\spring-web\\c#influencerapp\\InfuencerApp\\Core\\Controller.cs",
+              "RelativeToolTip": "Core\\Controller.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAmwBAAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-08T15:57:11.981Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
