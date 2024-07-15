@@ -1,4 +1,4 @@
-﻿using InfluencerManagerApp.Models.Contracts;
+using InfluencerManagerApp.Models.Contracts;
 using InfluencerManagerApp.Repositories.Contracts;
 
 namespace InfluencerManagerApp.Repositories

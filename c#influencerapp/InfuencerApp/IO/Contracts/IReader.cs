@@ -1,4 +1,4 @@
-﻿namespace InfluencerManagerApp.IO.Contracts
+namespace InfluencerManagerApp.IO.Contracts
 {
     public interface IReader
     {

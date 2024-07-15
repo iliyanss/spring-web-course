@@ -1,4 +1,4 @@
-﻿namespace InfluencerManagerApp.IO
+namespace InfluencerManagerApp.IO
 {
     using InfluencerManagerApp.IO.Contracts;
     using System;

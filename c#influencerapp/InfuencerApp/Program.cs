@@ -1,4 +1,4 @@
-﻿using InfluencerManagerApp.Core;
+using InfluencerManagerApp.Core;
 using InfluencerManagerApp.Core.Contracts;
 
 namespace InfluencerManagerApp;

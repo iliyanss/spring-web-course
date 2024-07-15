@@ -1,4 +1,4 @@
-﻿namespace InfluencerManagerApp.Repositories.Contracts
+namespace InfluencerManagerApp.Repositories.Contracts
 {
     public interface IRepository<T> where T : class
     {

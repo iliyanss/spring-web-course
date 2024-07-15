@@ -1,4 +1,4 @@
-﻿namespace InfluencerManagerApp.Utilities.Messages
+namespace InfluencerManagerApp.Utilities.Messages
 {
     public class ExceptionMessages
     {

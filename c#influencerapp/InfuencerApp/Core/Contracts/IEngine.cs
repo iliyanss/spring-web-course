@@ -1,4 +1,4 @@
-﻿namespace InfluencerManagerApp.Core.Contracts
+namespace InfluencerManagerApp.Core.Contracts
 {
     public interface IEngine
     {

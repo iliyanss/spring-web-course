@@ -1,4 +1,4 @@
-﻿namespace InfluencerManagerApp.Models.Contracts
+namespace InfluencerManagerApp.Models.Contracts
 {
     public interface IInfluencer
     {

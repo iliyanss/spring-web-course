@@ -1,4 +1,4 @@
-﻿namespace InfluencerManagerApp.Models
+namespace InfluencerManagerApp.Models
 {
     public class FashionInfluencer : Influencer
     {
