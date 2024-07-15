@@ -66,15 +66,7 @@ public class UserService{
         return user;
     }
 
-    public boolean checkCredentials(String username, String password) {
-        UserEntity user = this.getUserByUsername((username));
 
-        if (user == null) {
-            return false;
-        }
-
-        return encoder.matches(password, user.getPassword());
-    }
     public Optional<UserEntity> findUserById(Long id) {
         return userRepository.findById(id);
 

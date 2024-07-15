@@ -32,10 +32,6 @@ public class UserController {
         return new LoginDTO();
     }
 
-    @ModelAttribute
-    public void addAttribute(Model model) {
-        model.addAttribute("validCredentials");
-    }
 
     @GetMapping("/register")
     public String register() {
@@ -67,28 +63,8 @@ public class UserController {
     }
     @GetMapping("/login")
     public String login(){
+
         return "/login";
     }
-//    @PostMapping("/login")
-//    public String loginConfirm(LoginDTO loginDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-//        if (bindingResult.hasErrors()) {
-//            redirectAttributes
-//                    .addFlashAttribute("loginDTO", loginDTO)
-//                    .addFlashAttribute("org.springframework.validation.BindingResult.loginDTO", bindingResult);
-//
-//            return "redirect:/login";
-//        }
-//
-//        boolean validCredentials = this.userService.checkCredentials(loginDTO.getUsername(), loginDTO.getPassword());
-//
-//        if (!validCredentials) {
-//            redirectAttributes
-//                    .addFlashAttribute("loginDTO", loginDTO)
-//                    .addFlashAttribute("validCredentials", false);
-//            this.userService.login(loginDTO.getUsername());
-//            return "redirect:/login";
-//        }
-//
-//        return "redirect:/home";
-//    }
+
 }
