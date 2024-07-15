@@ -14,6 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InfuencerApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5626b36fa34f35ae5ad5b1da5d81eac04138b7ad")]
 [assembly: System.Reflection.AssemblyProductAttribute("InfuencerApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InfuencerApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
