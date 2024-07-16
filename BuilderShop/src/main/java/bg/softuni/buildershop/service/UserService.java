@@ -7,6 +7,7 @@ import bg.softuni.buildershop.model.entity.UserRoleEntity;
 import bg.softuni.buildershop.model.enums.UserRoleEnum;
 import bg.softuni.buildershop.repository.UserRepository;
 import bg.softuni.buildershop.repository.UserRoleRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,20 +18,25 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+
 @Service
-public class UserService{
+public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder encoder;
     private final UserDetailsService builderUserDetailsService;
     private final UserRoleRepository roleRepository;
+    private final ModelMapper modelMapper;
 
     public UserService(UserRepository userRepository,
                        PasswordEncoder encoder,
-                       UserDetailsService builderUserDetailsService, UserRoleRepository roleRepository) {
+                       UserDetailsService builderUserDetailsService,
+                       UserRoleRepository roleRepository,
+                       ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.encoder = encoder;
         this.builderUserDetailsService = builderUserDetailsService;
         this.roleRepository = roleRepository;
+        this.modelMapper = modelMapper;
     }
 
     public UserDTO findUserByEmail(String email) {
@@ -39,7 +45,7 @@ public class UserService{
             return null;
         }
 
-        return this.mapUserDTO(user);
+        return this.modelMapper.map(user, UserDTO.class);
     }
 
     public UserDTO findUserByUsername(String username) {
@@ -48,28 +54,19 @@ public class UserService{
             return null;
         }
 
-        return this.mapUserDTO(user);
+        return this.modelMapper.map(user, UserDTO.class);
     }
-    private UserDTO mapUserDTO(UserEntity user) {
-        return new UserDTO()
-                .setId(user.getId())
-                .setEmail(user.getEmail())
-                .setUsername(user.getUsername());
-    }
+
     private UserEntity mapUser(RegisterDTO registerDTO) {
-        UserEntity user = new UserEntity();
-        user.setUsername(registerDTO.getUsername());
-        user.setEmail(registerDTO.getEmail());
+        UserEntity user = this.modelMapper.map(registerDTO, UserEntity.class);
         user.setPassword(encoder.encode(registerDTO.getPassword()));
         UserRoleEntity userRole = this.roleRepository.findByRole(UserRoleEnum.USER);
         user.getRoles().add(userRole);
         return user;
     }
 
-
     public Optional<UserEntity> findUserById(Long id) {
         return userRepository.findById(id);
-
     }
 
     private UserEntity getUserByUsername(String username) {
