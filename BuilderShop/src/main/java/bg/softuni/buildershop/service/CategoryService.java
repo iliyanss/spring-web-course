@@ -5,6 +5,8 @@ import bg.softuni.buildershop.model.enums.CategoryEnum;
 import bg.softuni.buildershop.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CategoryService {
     private final CategoryRepository categoryRepository;
@@ -15,5 +17,8 @@ public class CategoryService {
 
     public CategoryEntity findCategory(CategoryEnum categoryEnum) {
         return this.categoryRepository.findByName(categoryEnum).orElse(null);
+    }
+    public List<CategoryEntity> findAllCategories() {
+        return this.categoryRepository.findAll();
     }
 }

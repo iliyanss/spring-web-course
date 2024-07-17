@@ -1,5 +1,7 @@
 package bg.softuni.buildershop.config;
 
+import bg.softuni.buildershop.model.dto.ProductSummaryDTO;
+import bg.softuni.buildershop.model.entity.ProductEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +17,10 @@ public class AppConfig {
     }
     @Bean
     public ModelMapper modelMapper() {
-        return new ModelMapper();
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.createTypeMap(ProductEntity.class, ProductSummaryDTO.class)
+                .addMappings(mapper ->
+                        mapper.map(src -> src.getCategory().getName(), ProductSummaryDTO::setCategory));
+        return modelMapper;
     }
 }
