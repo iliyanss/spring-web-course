@@ -26,6 +26,9 @@ public class UserEntity {
     private List<UserRoleEntity> roles = new ArrayList<>();
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "author")
     private List<ProductEntity>products = new ArrayList<>();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<ProductEntity>favoriteProducts = new ArrayList<>();
     public UserEntity() {
 
     }
@@ -81,6 +84,15 @@ public class UserEntity {
 
     public UserEntity setProducts(List<ProductEntity> products) {
         this.products = products;
+        return this;
+    }
+
+    public List<ProductEntity> getFavoriteProducts() {
+        return favoriteProducts;
+    }
+
+    public UserEntity setFavoriteProducts(List<ProductEntity> favoriteProducts) {
+        this.favoriteProducts = favoriteProducts;
         return this;
     }
 }

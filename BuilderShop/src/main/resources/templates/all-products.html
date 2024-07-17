@@ -27,7 +27,7 @@
                     <th>Currency</th>
                     <th>Category</th>
                     <th>Description</th>
-                    <th sec:authorize="hasAuthority('ROLE_ADMIN')">Actions</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -55,6 +55,7 @@
                     <input type="hidden" th:id="'priceInBGN-' + ${p.id}" th:value="*{price}">
                     <td>
                         <a class="btn-danger btn" sec:authorize="hasAuthority('ROLE_ADMIN')" th:href="@{|/products/remove/${p.id}|}">Remove</a>
+                        <a class="btn-danger btn" th:href="@{|/products/favorite/${p.id}|}">Favorite</a>
                     </td>
                 </tr>
                 </tbody>
