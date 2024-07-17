@@ -24,7 +24,8 @@ public class UserEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<UserRoleEntity> roles = new ArrayList<>();
-
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "author")
+    private List<ProductEntity>products = new ArrayList<>();
     public UserEntity() {
 
     }
@@ -71,6 +72,15 @@ public class UserEntity {
 
     public UserEntity setRoles(List<UserRoleEntity> roles) {
         this.roles = roles;
+        return this;
+    }
+
+    public List<ProductEntity> getProducts() {
+        return products;
+    }
+
+    public UserEntity setProducts(List<ProductEntity> products) {
+        this.products = products;
         return this;
     }
 }

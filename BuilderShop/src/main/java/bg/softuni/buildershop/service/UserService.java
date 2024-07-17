@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.Optional;
 
 @Service
@@ -76,18 +77,24 @@ public class UserService {
     public void register(RegisterDTO registerDTO) {
         this.userRepository.save(mapUser(registerDTO));
     }
+    public Long getUserIdFromPrincipal(Principal principal) {
+        String username = principal.getName();
+        UserEntity user = userRepository.findByUsername(username).orElse(null);
 
-    public Authentication login(String username) {
-        UserDetails userDetails = builderUserDetailsService.loadUserByUsername(username);
-
-        Authentication auth = new UsernamePasswordAuthenticationToken(
-                userDetails,
-                userDetails.getPassword(),
-                userDetails.getAuthorities()
-        );
-
-        SecurityContextHolder.getContext().setAuthentication(auth);
-
-        return auth;
+        return user.getId();
     }
+
+//    public Authentication login(String username) {
+//        UserDetails userDetails = builderUserDetailsService.loadUserByUsername(username);
+//
+//        Authentication auth = new UsernamePasswordAuthenticationToken(
+//                userDetails,
+//                userDetails.getPassword(),
+//                userDetails.getAuthorities()
+//        );
+//
+//        SecurityContextHolder.getContext().setAuthentication(auth);
+//
+//        return auth;
+//    }
 }

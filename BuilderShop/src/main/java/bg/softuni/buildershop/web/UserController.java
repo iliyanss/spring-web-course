@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
-//@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
@@ -27,7 +26,7 @@ public class UserController {
     public RegisterDTO registerDTO() {
         return new RegisterDTO();
     }
-    @ModelAttribute
+    @ModelAttribute("loginDTO")
     public LoginDTO loginDTO() {
         return new LoginDTO();
     }
@@ -63,7 +62,6 @@ public class UserController {
     }
     @GetMapping("/login")
     public String login(){
-
         return "/login";
     }
 
