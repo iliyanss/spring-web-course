@@ -18,7 +18,7 @@ public class AddProductDTO {
     @NotNull(message = "You must select a category!")
     private CategoryEnum category;
     @NotNull
-    @Size(min = 40, max = 500, message = "Description length must be between 40 and 500 characters!")
+    @Size(min = 10, max = 700, message = "Description length must be between 10 and 700 characters!")
     private String description;
     @NotNull
     @Positive
@@ -67,11 +67,11 @@ public class AddProductDTO {
         return this;
     }
 
-    public @NotNull @Size(min = 40, max = 500, message = "Description length must be between 40 and 500 characters!") String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public AddProductDTO setDescription(@NotNull @Size(min = 40, max = 500, message = "Description length must be between 40 and 500 characters!") String description) {
+    public AddProductDTO setDescription(String description) {
         this.description = description;
         return this;
     }

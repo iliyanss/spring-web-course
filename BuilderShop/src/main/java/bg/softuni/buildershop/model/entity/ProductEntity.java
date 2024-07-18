@@ -3,6 +3,9 @@ package bg.softuni.buildershop.model.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "products")
 public class ProductEntity {
@@ -19,11 +22,13 @@ public class ProductEntity {
     @Column(nullable = false)
     private String image;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "author_id", nullable = false)
+    @JoinColumn(name = "author_id")
     private UserEntity author;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id", nullable = false)
+    @JoinColumn(name = "category_id")
     private CategoryEntity category;
+    @ManyToMany(mappedBy = "favoriteProducts", fetch = FetchType.EAGER)
+    private List<UserEntity> usersWhoFavorited = new ArrayList<>();
 
 
 
@@ -92,6 +97,15 @@ public class ProductEntity {
 
     public ProductEntity setCategory(CategoryEntity category) {
         this.category = category;
+        return this;
+    }
+
+    public List<UserEntity> getUsersWhoFavorited() {
+        return usersWhoFavorited;
+    }
+
+    public ProductEntity setUsersWhoFavorited(List<UserEntity> usersWhoFavorited) {
+        this.usersWhoFavorited = usersWhoFavorited;
         return this;
     }
 }

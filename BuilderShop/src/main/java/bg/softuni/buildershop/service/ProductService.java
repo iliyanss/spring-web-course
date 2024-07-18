@@ -20,10 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 
@@ -90,9 +87,24 @@ public class ProductService {
         if (Objects.equals(principalId, ownerId) || isAdmin) {
             productEntity.getAuthor().getProducts().remove(productEntity);
             productEntity.setAuthor(null);
+            productEntity.setCategory(null);
+
+            List<UserEntity> users = this.userRepository.findAll();
+            for (UserEntity user : users) {
+                Iterator<ProductEntity> iterator = user.getFavoriteProducts().iterator();
+                while (iterator.hasNext()) {
+                    ProductEntity favoriteProduct = iterator.next();
+                    if (favoriteProduct.equals(productEntity)) {
+                        iterator.remove();
+                    }
+                }
+            }
+
+            userRepository.saveAll(users);
             productRepository.delete(productEntity);
         }
     }
+
     public List<FavoriteProductDTO> getFavoriteProducts(Principal principal) {
         Long principalId = this.userService.getUserIdFromPrincipal(principal);
         UserEntity userEntity = this.userService.findUserById(principalId).orElse(null);
@@ -126,6 +138,7 @@ public class ProductService {
         }
         if (user != null && productEntity != null) {
             user.getFavoriteProducts().add(productEntity);
+            productEntity.getUsersWhoFavorited().add(user);
             userRepository.save(user);
         }
     }
@@ -134,7 +147,9 @@ public class ProductService {
         ProductEntity productEntity = this.productRepository.findById(id).orElse(null);
         Long principalId = this.userService.getUserIdFromPrincipal(principal);
         UserEntity user = this.userService.findUserById(principalId).orElse(null);
+        productEntity.getUsersWhoFavorited().remove(user);
         user.getFavoriteProducts().remove(productEntity);
+
         userRepository.save(user);
     }
 }

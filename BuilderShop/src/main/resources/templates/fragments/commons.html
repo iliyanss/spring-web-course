@@ -20,9 +20,10 @@
             <a sec:authorize="${isAuthenticated()}" href="/add-product">Add Product</a>
             <a sec:authorize="${isAuthenticated()}" href="/all-products">All Products</a>
             <a sec:authorize="${isAuthenticated()}" href="/my-favorites">My Favorites</a>
-            <a sec:authorize="${isAuthenticated()}" href="/messages/contact">Contact us</a>
+            <a sec:authorize="${isAuthenticated()}" href="/messages/contact">Contact </a>
             <a sec:authorize="hasAuthority('ROLE_ADMIN')" href="/messages/all-messages">All messages</a>
-            <a  href="/about">About</a>
+            <a sec:authorize="hasAuthority('ROLE_ADMIN')" href="/admin/users">User Modification</a>
+                       <a  href="/about">About</a>
         </div>
         <div class="links">
             <li>

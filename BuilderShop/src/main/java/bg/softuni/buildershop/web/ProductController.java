@@ -91,7 +91,7 @@ public class ProductController {
 
         productService.addProductToFavorite(id,principal);
 
-        return "redirect:/my-favorites";
+        return "redirect:/all-products";
     }
     @GetMapping("/products/remove-from-favorite/{id}")
     public String removeProductFromFavorite(@PathVariable("id") Long id, Principal principal) {

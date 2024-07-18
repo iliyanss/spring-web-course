@@ -24,7 +24,7 @@ public class UserEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<UserRoleEntity> roles = new ArrayList<>();
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "author")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "author",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductEntity>products = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER)
