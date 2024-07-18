@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons::head"></head>
+<body>
+<header th:replace="fragments/commons::nav"></header>
+<main>
+    <div class="welcome mt-1 mb-4">
+        <p class="mySticky bg-gray text-dark user">Welcome,
+            <span sec:authorize="isAuthenticated()">
+                <span sec:authentication="name"></span>
+            </span>
+            <span sec:authorize="!isAuthenticated()">
+                Anonymous!
+            </span>
+        </p>
+        <div class="home-fields" style="height: 80vh; overflow: auto">
+            <h3 class="my-products">My Favorites</h3>
+            <table class="table table-striped table-dark">
+                <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="p : ${myFavorites}"
+                    th:object="${p}">
+                    <td class="zoom-img">
+                        <img th:src="@{${p.image}}" th:alt="${p.name}" width="75px" height="75px" onclick="openLightbox(this)">
+                    </td>
+                    <td th:text="${p.name}"></td>
+                    <td th:id="'price-' + ${p.id}" th:text="${p.price}"></td>
+                    <td th:text="${p.category.name()}"></td>
+                    <td>
+                        <a href="#" onclick="showDescriptionModal(this)" th:attr="data-description-id='desc-' + ${p.id}" class="text-primary">See more</a>
+                        <span th:id="'desc-' + ${p.id}" th:text="${p.description}" style="display: none;"></span>
+                    </td>
+                    <td>
+                        <a class="btn-danger btn" th:href="@{|/products/remove-from-favorite/${p.id}|}">Remove</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div id="lightbox" class="lightbox">
+                <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+                <img id="lightbox-img" src="" alt="Product Image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Description Modal -->
+    <div id="descriptionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDescriptionModal()">&times;</span>
+            <p id="descriptionText"></p>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/commons::footer"></footer>
+
+<!-- Modal and lightbox Script -->
+<script>
+    function showDescriptionModal(element) {
+        var descriptionId = element.getAttribute('data-description-id');
+        var description = document.getElementById(descriptionId).innerText;
+        document.getElementById('descriptionText').innerText = description;
+        document.getElementById('descriptionModal').style.display = "block";
+    }
+
+    function closeDescriptionModal() {
+        document.getElementById('descriptionModal').style.display = "none";
+    }
+    function openLightbox(imageElement) {
+        var imgSrc = imageElement.src;
+        document.getElementById('lightbox-img').src = imgSrc;
+        document.getElementById('lightbox').style.display = "block";
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = "none";
+    }
+</script>
+<!-- Zoom image and pop up in bigger window style -->
+<style>
+    .zoom-img {
+        display: block;
+        position: relative;
+        overflow: hidden;
+    }
+    .zoom-img img {
+        transition: transform .3s ease;
+        cursor: pointer;
+    }
+    .zoom-img img:hover {
+        transform: scale(2.0); /* Adjust the scale factor as needed */
+    }
+    .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.9);
+        text-align: center;
+    }
+    .lightbox img {
+        margin: auto;
+        margin-top: 10%;
+        max-width: 90%;
+        max-height: 80%;
+        display: block;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+    }
+    .close-lightbox {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .close-lightbox:hover,
+    .close-lightbox:focus {
+        color: #f44336;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+<!-- Modal Styles -->
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+        padding-top: 60px;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+</body>
+</html>
