@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons::head"></head>
+<body>
+<header th:replace="fragments/commons::nav"></header>
+<main>
+    <div class="welcome mt-1 mb-4">
+        <h3 class="my-username-change">Change Username</h3>
+        <form th:action="@{/admin/users/change-username}" method="post">
+            <input type="hidden" name="id" th:value="${userId}" />
+            <div class="form-group">
+                <label for="newUsername">New Username</label>
+                <input type="text" class="form-control" id="newUsername" name="newUsername" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Apply</button>
+        </form>
+    </div>
+</main>
+<footer th:replace="fragments/commons::footer"></footer>
+</body>
+</html>
