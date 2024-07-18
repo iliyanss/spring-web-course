@@ -49,4 +49,8 @@ public class HomeController {
         return "redirect:/home";
 
     }
+    @GetMapping("/about")
+    public String about(){
+        return "about";
+    }
 }

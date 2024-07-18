@@ -1,11 +1,14 @@
 package bg.softuni.buildershop.model.dto;
 
 import bg.softuni.buildershop.model.enums.CategoryEnum;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductSummaryDTO {
+
     Long id;
     String image;
     String name;
