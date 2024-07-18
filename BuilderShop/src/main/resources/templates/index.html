@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/commons::head"></head>
+<body>
+<header th:replace="fragments/commons::nav"></header>
+<main>
+    <div class="container bg-blur rounded mt-5 ">
+    <div class="welcome">
+        <h1>Welcome to Oolx App</h1>
+        <hr class="my-3 bg-white w-50"/>
+
+        <p class="h4">
+            "Oolx app is created to help people sell their unwanted items.</p>
+        <hr class="my-3 bg-white w-75"/>
+
+        <h3>
+            <a class="primary-text" href="/login">Login</a>
+            if you have an account or
+            <a class="primary-text" href="/register">Register</a>
+            now and check new products.
+        </h3>
+    </div>
+    </div>
+</main>
+<footer th:replace="fragments/commons::footer"></footer>
+</body>
+</html>

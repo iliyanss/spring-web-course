@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons::head"></head>
+<body>
+<header th:replace="fragments/commons::nav"></header>
+<main>
+    <div class="welcome mt-1 mb-4">
+        <p class="mySticky bg-gray text-dark user">Welcome,
+            <span sec:authorize="isAuthenticated()">
+                <span sec:authentication="name"></span>
+            </span>
+            <span sec:authorize="!isAuthenticated()">
+                Anonymous!
+            </span>
+        </p>
+        <div class="home-fields" style="height: 80vh; overflow: auto">
+            <h3 class="my-products">My Products</h3>
+            <table class="table table-striped table-dark">
+                <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="p : ${myProducts}">
+                    <td>
+                        <img th:src="@{${p.image}}" th:alt="${p.name}" width="75px" height="75px">
+                    </td>
+                    <td th:text="${p.name}"></td>
+                    <td th:text="${p.price}"></td>
+                    <td th:text="${p.category.getName()}"></td>
+                    <td>
+                        <a class="btn-danger btn" th:href="@{|/products/remove/${p.id}|}">Remove</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/commons::footer"></footer>
+</body>
+</html>
