@@ -5,6 +5,7 @@
 <body>
 <header th:replace="fragments/commons::nav"></header>
 <main>
+
     <form class="welcome add-offer-form"
           th:method="post"
           th:action="@{/add-painting}"
@@ -47,22 +48,11 @@
                     class="text-danger">Author error message</small>
         </div>
 
-        <div class="form-group">
-            <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="image" class="h4 mb-2">Image URL</label>
-            </div>
-            <textarea
-                    th:object="${addPaintingDTO}"
-                    th:field="*{image}"
-                    th:errorclass="'is-invalid bg-danger'"
-                    type="text"
-                    class="form-control"
-                    id="image"
-                    name="image"></textarea>
-            <small
-                    th:if="${#fields.hasErrors('image')}"
-                    th:errors="*{image}"
-                    class="text-danger">Image URL error message</small>
+        <div class="welcome add-offer-form" method="post" enctype="multipart/form-data" action="/upload-image">
+            <label for="image">Choose an image to upload:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+            <input type="hidden" name="productId" value="1"> <!-- Replace with the actual product ID -->
+            <button type="submit">Upload Image</button>
         </div>
 
         <div class="form-group">
