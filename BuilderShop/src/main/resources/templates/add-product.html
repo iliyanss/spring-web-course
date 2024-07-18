@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/commons::head"></head>
+<body>
+<header th:replace="fragments/commons::nav"></header>
+<main>
+    <form class="welcome add-offer-form"
+          th:method="post"
+          th:action="@{/add-product}"
+          th:object="${addProductDTO}"
+          enctype="multipart/form-data">
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add product</span></h1>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="name" class="h4 mb-2">Name</label>
+            </div>
+            <input
+                    th:field="*{name}"
+                    th:errorclass="'is-invalid bg-danger'"
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    required/>
+            <small
+                    th:if="${#fields.hasErrors('name')}"
+                    th:errors="*{name}"
+                    class="text-danger">Name error message</small>
+        </div>
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="description" class="h4 mb-2">Description</label>
+            </div>
+            <input
+                    th:field="*{description}"
+                    th:errorclass="'is-invalid bg-danger'"
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    name="description"
+                    required/>
+            <small
+                    th:if="${#fields.hasErrors('description')}"
+                    th:errors="*{description}"
+                    class="text-danger">Description error message</small>
+        </div>
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="price" class="h4 mb-2">Price(BGN)</label>
+            </div>
+            <input
+                    th:field="*{price}"
+                    th:errorclass="'is-invalid bg-danger'"
+                    type="number"
+                    class="form-control"
+                    id="price"
+                    name="price"
+                    required/>
+            <small
+                    th:if="${#fields.hasErrors('price')}"
+                    th:errors="*{price}"
+                    class="text-danger">Price error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="image" class="h4 mb-2">Choose an image to upload:</label>
+            </div>
+            <input th:field="*{image}"
+                   th:errorclass="'is-invalid bg-danger'"
+                   type="file"
+                   class="form-control"
+                   id="image" name="image"
+                   accept="image/*"
+                   required>
+            <input type="hidden" name="productId" th:value="*{image}">
+            <small
+                    th:if="${#fields.hasErrors('image')}"
+                    th:errors="*{image}"
+                    class="text-danger">Image URL error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="text-white label-holder d-flex justify-content-center">
+                <label for="category" class="h4 mb-2">Category</label>
+            </div>
+            <select
+                    th:field="*{category}"
+                    th:errorclass="'is-invalid bg-danger'"
+                    class="browser-default custom-select form-control"
+                    id="category"
+                    name="category">
+                <option value="">Select category</option>
+                <option value="REAL_ESTATE">REAL ESTATE</option>
+                <option value="ELECTRONICS">ELECTRONICS</option>
+                <option value="BOOKS">BOOKS</option>
+                <option value="CLOTHES">CLOTHES</option>
+                <option value="HOME">HOME</option>
+            </select>
+            <small
+                    th:if="${#fields.hasErrors('category')}"
+                    th:errors="*{category}"
+                    class="text-danger">Category error message</small>
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-info  mb-3">Add product</button>
+        </div>
+    </form>
+</main>
+<footer th:replace="fragments/commons::footer"></footer>
+</body>
+</html>

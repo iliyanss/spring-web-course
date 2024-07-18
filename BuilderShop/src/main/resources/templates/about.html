@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons::head"></head>
+<body>
+<header th:replace="fragments/commons::nav"></header>
+<main>
+    <div class="welcome mt-1 mb-4">
+        <p class="mySticky bg-gray text-dark user">Welcome,
+            <span sec:authorize="isAuthenticated()">
+                <span sec:authentication="name"></span>
+            </span>
+            <span sec:authorize="!isAuthenticated()">
+                Anonymous!
+            </span>
+        </p>
+        <div class="about-section">
+            <h2>About Us</h2>
+            <p>Welcome to our website! We are committed to providing you with the best products and services. Our team is dedicated to ensuring customer satisfaction and delivering quality. Thank you for choosing us!</p>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/commons::footer"></footer>
+<!-- Styles for about section -->
+<style>
+    .about-section {
+        background-color: #f4f4f4;
+        padding: 20px;
+        border-radius: 5px;
+    }
+    .about-section h2 {
+        margin-bottom: 15px;
+    }
+    .about-section p {
+        font-size: 1.1em;
+        line-height: 1.6em;
+    }
+</style>
+</body>
+</html>
