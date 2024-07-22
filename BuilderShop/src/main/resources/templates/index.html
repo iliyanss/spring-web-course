@@ -9,16 +9,14 @@
         <div class="welcome">
             <h1 th:text="#{app.title}">Welcome to Oolx App</h1>
             <hr class="my-3 bg-white w-50"/>
-
             <p class="h4" th:text="#{welcome.message}">
-                "Oolx app is created to help people sell their unwanted items.</p>
+                </p>
             <hr class="my-3 bg-white w-75"/>
-
             <h3>
                 <a class="primary-text" href="/login" th:text="#{nav.login}">Login</a>
-                if you have an account or
+                <a th:text="#{welcome.messageLogin}"></a>
                 <a class="primary-text" href="/register" th:text="#{nav.register}">Register</a>
-                now and check new products.
+                <a th:text="#{welcome.messageRegister}"></a>
             </h3>
         </div>
     </div>

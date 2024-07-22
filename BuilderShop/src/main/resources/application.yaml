@@ -22,7 +22,10 @@ spring:
     url: jdbc:mysql://localhost:3306/buildershop?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
   web:
     locale: en
-
+    locale-resolver: accept_header
+  messages:
+    basename: messages
+    encoding: UTF-8
 logging:
   level:
     org:

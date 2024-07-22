@@ -11,6 +11,21 @@
     <link rel="stylesheet" href="/css/style.css"/>
     <script src="/js/jquery-3.5.1.slim.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var langSelect = document.getElementById("languageSelect");
+
+            var urlParams = new URLSearchParams(window.location.search);
+            var currentLang = urlParams.get('lang') || 'en';
+
+            langSelect.value = currentLang;
+
+            langSelect.addEventListener("change", function() {
+                var selectedLang = langSelect.value;
+                window.location.href = "?lang=" + selectedLang;
+            });
+        });
+    </script>
 </head>
 <body>
 <header>
@@ -38,10 +53,12 @@
                 </form>
             </li>
         </div>
-        <div class="language-switcher">
-            <a href="?lang=en">EN</a> |
-            <a href="?lang=bg">BG</a> |
-            <a href="?lang=it">IT</a>
+        <div class="language-select">
+            <select id="languageSelect" class="form-select">
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="it">Italiano</option>
+            </select>
         </div>
     </nav>
 </header>
