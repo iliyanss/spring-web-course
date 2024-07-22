@@ -12,6 +12,7 @@ spring:
         hiddenmethod:
             filter:
                 enabled: true
+
 #    sql:
 #        init:
 #          mode: always
@@ -34,3 +35,4 @@ forex:
         key: ${FOREX_API_KEY:}
         url: "https://openexchangerates.org/api/latest.json?app_id={app_id}"
         base: "USD"
+

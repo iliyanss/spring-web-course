@@ -6,21 +6,21 @@
 <header th:replace="fragments/commons::nav"></header>
 <main>
     <div class="container bg-blur rounded mt-5 ">
-    <div class="welcome">
-        <h1>Welcome to Oolx App</h1>
-        <hr class="my-3 bg-white w-50"/>
+        <div class="welcome">
+            <h1 th:text="#{app.title}">Welcome to Oolx App</h1>
+            <hr class="my-3 bg-white w-50"/>
 
-        <p class="h4">
-            "Oolx app is created to help people sell their unwanted items.</p>
-        <hr class="my-3 bg-white w-75"/>
+            <p class="h4" th:text="#{welcome.message}">
+                "Oolx app is created to help people sell their unwanted items.</p>
+            <hr class="my-3 bg-white w-75"/>
 
-        <h3>
-            <a class="primary-text" href="/login">Login</a>
-            if you have an account or
-            <a class="primary-text" href="/register">Register</a>
-            now and check new products.
-        </h3>
-    </div>
+            <h3>
+                <a class="primary-text" href="/login" th:text="#{nav.login}">Login</a>
+                if you have an account or
+                <a class="primary-text" href="/register" th:text="#{nav.register}">Register</a>
+                now and check new products.
+            </h3>
+        </div>
     </div>
 </main>
 <footer th:replace="fragments/commons::footer"></footer>
