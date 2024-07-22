@@ -37,7 +37,7 @@
                         <img th:src="@{${p.image}}" th:alt="${p.name}" width="75px" height="75px" onclick="openLightbox(this)">
                     </td>
                     <td th:text="${p.name}"></td>
-                    <td th:id="'price-' + ${p.id}" th:text="${p.price}"></td>
+                    <td th:id="'price-' + ${p.id}" th:text="${#numbers.formatDecimal(p.price, 1, 'POINT', 2, 'POINT')}"></td>
 
                     <td><select th:id="'currency-' +${p.id}">
                         <option
@@ -127,7 +127,7 @@
         ))
             .then(res => res.json())
             .then(data => {
-                priceSpan.textContent = data.result;
+                priceSpan.textContent = parseFloat(data.result).toFixed(2);
             })
             .catch(err => console.log('An error occurred: ' + err));
     }

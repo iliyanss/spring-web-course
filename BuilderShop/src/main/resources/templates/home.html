@@ -33,7 +33,7 @@
                         <img th:src="@{${p.image}}" th:alt="${p.name}" width="75px" height="75px">
                     </td>
                     <td th:text="${p.name}"></td>
-                    <td th:text="${p.price}"></td>
+                    <td th:text="${#numbers.formatDecimal(p.price, 1, 'POINT', 2, 'POINT')}"></td>
                     <td th:text="${p.category.getName()}"></td>
                     <td>
                         <a class="btn-danger btn" th:href="@{|/products/remove/${p.id}|}">Remove</a>

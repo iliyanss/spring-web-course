@@ -35,7 +35,7 @@
                         <img th:src="@{${p.image}}" th:alt="${p.name}" width="75px" height="75px" onclick="openLightbox(this)">
                     </td>
                     <td th:text="${p.name}"></td>
-                    <td th:id="'price-' + ${p.id}" th:text="${p.price}"></td>
+                    <td th:id="'price-' + ${p.id}" th:text="${#numbers.formatDecimal(p.price, 1, 'POINT', 2, 'POINT')}"></td>
                     <td th:text="${p.category.name()}"></td>
                     <td>
                         <a href="#" onclick="showDescriptionModal(this)" th:attr="data-description-id='desc-' + ${p.id}" class="text-primary">See more</a>
