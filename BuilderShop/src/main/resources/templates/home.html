@@ -7,13 +7,13 @@
 <header th:replace="fragments/commons::nav"></header>
 <main>
     <div class="welcome mt-1 mb-4">
-        <p class="mySticky bg-gray text-dark user">Welcome,
-            <span sec:authorize="isAuthenticated()">
-                <span sec:authentication="name"></span>
-            </span>
+        <p class="mySticky bg-gray text-dark user">
+    <span sec:authorize="isAuthenticated()">
+        <span th:text="#{welcome.word} + ', ' + ${#authentication.name}"></span>
+    </span>
             <span sec:authorize="!isAuthenticated()">
-                Anonymous!
-            </span>
+       <span th:text="#{welcome.word} + ', ' + 'Anonymous!'"></span>
+    </span>
         </p>
         <div class="home-fields" style="height: 80vh; overflow: auto">
             <h3 class="my-products" th:text="#{nav.myProducts}">My Products</h3>

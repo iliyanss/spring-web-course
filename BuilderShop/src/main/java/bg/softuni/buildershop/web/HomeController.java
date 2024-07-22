@@ -24,7 +24,10 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String index() {
+    public String index(Principal principal) {
+        if (principal != null) {
+            return "redirect:/home";
+        }
         return "index";
     }
 
