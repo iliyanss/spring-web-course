@@ -46,7 +46,6 @@ public class UserService {
         this.modelMapper = modelMapper;
         this.productRepository = productRepository;
     }
-
     public UserDTO findUserByEmail(String email) {
         UserEntity user = userRepository.findByEmail(email).orElse(null);
         if (user == null) {
@@ -65,7 +64,7 @@ public class UserService {
         return this.modelMapper.map(user, UserDTO.class);
     }
 
-    private UserEntity mapUser(RegisterDTO registerDTO) {
+    public UserEntity mapUser(RegisterDTO registerDTO) {
         UserEntity user = this.modelMapper.map(registerDTO, UserEntity.class);
         user.setPassword(encoder.encode(registerDTO.getPassword()));
         UserRoleEntity userRole = this.roleRepository.findByRole(UserRoleEnum.USER);
@@ -77,7 +76,7 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    private UserEntity getUserByUsername(String username) {
+    public UserEntity getUserByUsername(String username) {
         return this.userRepository.findByUsername(username).orElse(null);
     }
 
@@ -129,4 +128,5 @@ public class UserService {
         user.setUsername(newUsername);
         userRepository.save(user);
     }
+
 }
