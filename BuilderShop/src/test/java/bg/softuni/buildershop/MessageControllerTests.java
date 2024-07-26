@@ -53,6 +53,7 @@ public class MessageControllerTests {
     }
 
     @Test
+    @WithMockUser(username = "testUser")
     void testShowContactForm() throws Exception {
         mockMvc.perform(get("/messages/contact"))
                 .andExpect(status().isOk())
@@ -67,8 +68,9 @@ public class MessageControllerTests {
 
         mockMvc.perform(post("/messages/send")
                         .with(SecurityMockMvcRequestPostProcessors.csrf())
+                        .param("name", "Test User")
                         .param("email", "test@test.com")
-                        .param("message", "Test message"))
+                        .param("messageText", "Test message"))
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl("/messages/contact?success"));
 
@@ -94,6 +96,9 @@ public class MessageControllerTests {
     @Test
     @WithMockUser(username = "testUser")
     void testSendMessageWithBindingErrors() throws Exception {
+        when(userService.getUserIdFromPrincipal(any(Principal.class))).thenReturn(1L);
+        when(userService.findUserById(1L)).thenReturn(Optional.of(testUser));
+
         mockMvc.perform(post("/messages/send")
                         .with(SecurityMockMvcRequestPostProcessors.csrf())
                         .param("email", "")
