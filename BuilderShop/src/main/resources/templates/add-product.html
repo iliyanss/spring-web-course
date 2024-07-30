@@ -67,7 +67,7 @@
 
         <div class="form-group">
             <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="image" class="h4 mb-2">Choose an image to upload:</label>
+                <label for="image" class="h4 mb-2">Choose an image to upload(10.00MB max size):</label>
             </div>
             <input th:field="*{image}"
                    th:errorclass="'is-invalid bg-danger'"
@@ -81,6 +81,9 @@
                     th:if="${#fields.hasErrors('image')}"
                     th:errors="*{image}"
                     class="text-danger">Image URL error message</small>
+            <div th:if="${message}" class="alert alert-danger" role="alert">
+                <p th:text="${message}"></p>
+            </div>
         </div>
 
         <div class="form-group">

@@ -1,6 +1,7 @@
 package bg.softuni.buildershop.service;
 
 import bg.softuni.buildershop.config.ForexApiConfig;
+import bg.softuni.buildershop.error.ObjectNotFoundException;
 import bg.softuni.buildershop.model.dto.ExRatesDTO;
 import bg.softuni.buildershop.model.entity.ExRateEntity;
 import bg.softuni.buildershop.repository.ExRateRepository;

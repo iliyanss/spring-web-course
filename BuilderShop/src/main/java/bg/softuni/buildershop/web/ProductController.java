@@ -9,14 +9,15 @@ import bg.softuni.buildershop.service.CategoryService;
 import bg.softuni.buildershop.service.ProductService;
 import bg.softuni.buildershop.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.boot.web.server.ErrorPage;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
+import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -54,7 +55,6 @@ public class ProductController {
     public String addProduct() {
         return "add-product";
     }
-
     @PostMapping("/add-product")
     public String addProduct(@Valid AddProductDTO addProductDTO,
                              BindingResult bindingResult,
@@ -62,7 +62,7 @@ public class ProductController {
                              Principal principal,
                              MultipartFile image
     ) throws IOException {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()){
             redirectAttributes
                     .addFlashAttribute("addProductDTO", addProductDTO)
                     .addFlashAttribute("org.springframework.validation.BindingResult.addProductDTO", bindingResult);
@@ -98,4 +98,6 @@ public class ProductController {
          this.productService.removeProductFromFavorites(id,principal);
          return "redirect:/my-favorites";
     }
+
+
 }

@@ -11,21 +11,6 @@
     <link rel="stylesheet" href="/css/style.css"/>
     <script src="/js/jquery-3.5.1.slim.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-<!--    <script>-->
-<!--        document.addEventListener("DOMContentLoaded", function() {-->
-<!--            var langSelect = document.getElementById("languageSelect");-->
-
-<!--            var urlParams = new URLSearchParams(window.location.search);-->
-<!--            var currentLang = urlParams.get('lang') || 'en';-->
-
-<!--            langSelect.value = currentLang;-->
-
-<!--            langSelect.addEventListener("change", function() {-->
-<!--                var selectedLang = langSelect.value;-->
-<!--                window.location.href = "?lang=" + selectedLang;-->
-<!--            });-->
-<!--        });-->
-<!--    </script>-->
     <script>
         function changeLanguage(lang) {
             if (window.location.href.indexOf('?') > -1) {
@@ -73,13 +58,7 @@
         <img src="/images/italian-flag.png" style="cursor: pointer;" width="20" height="20" onclick="changeLanguage('it')">
 
     </div>
-<!--        <div class="language-select">-->
-<!--            <select id="languageSelect" class="form-select">-->
-<!--                <option value="en">English</option>-->
-<!--                <option value="fr">Français</option>-->
-<!--                <option value="it">Italiano</option>-->
-<!--            </select>-->
-<!--        </div>-->
+
     </nav>
 </header>
 <footer class="footer bg-transparent py-2">

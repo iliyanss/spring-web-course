@@ -100,7 +100,7 @@ public class UserService {
     @Transactional
     public void deleteUser(Long userId) {
         UserEntity user = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+                .orElse(null);
 
         Iterator<ProductEntity> productIterator = user.getProducts().iterator();
         while (productIterator.hasNext()) {
@@ -127,6 +127,9 @@ public class UserService {
         UserEntity user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
         user.setUsername(newUsername);
         userRepository.save(user);
+
+
+
     }
 
 }

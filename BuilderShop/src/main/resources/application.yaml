@@ -38,6 +38,8 @@ logging:
     blog: WARN
 server:
   port: 8080
+  tomcat:
+    max-swallow-size: 10000MB
 
 forex:
   api:
