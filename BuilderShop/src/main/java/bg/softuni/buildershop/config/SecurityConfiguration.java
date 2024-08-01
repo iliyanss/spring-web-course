@@ -27,7 +27,7 @@ public class SecurityConfiguration {
                         authorizeRequests -> {
                             authorizeRequests
                                     .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                    .requestMatchers("/", "/login", "/register","/about","/error/image-size-too-large").permitAll()
+                                    .requestMatchers("/", "/login", "/register","/about").permitAll()
                                     .requestMatchers("/admin/**").hasRole(UserRoleEnum.ADMIN.name())
                                     .requestMatchers("/messages/all-messages").hasRole(UserRoleEnum.ADMIN.name())
                                     .requestMatchers("/messages/remove/**").hasRole(UserRoleEnum.ADMIN.name())
