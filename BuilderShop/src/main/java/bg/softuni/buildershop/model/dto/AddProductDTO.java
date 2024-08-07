@@ -11,8 +11,7 @@ public class AddProductDTO {
     @Size(min = 5, max = 40, message = "Name length must be between 5 and 40 characters!")
     @NotNull
     private String name;
-//    @Size(min = 5, max = 40, message = "Image url length must be between 40 and 200 characters!")
-//    @NotNull
+
     private MultipartFile image;
 
     @NotNull(message = "You must select a category!")

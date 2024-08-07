@@ -5,6 +5,7 @@ import bg.softuni.buildershop.error.ObjectNotFoundException;
 import bg.softuni.buildershop.model.dto.ExRatesDTO;
 import bg.softuni.buildershop.model.entity.ExRateEntity;
 import bg.softuni.buildershop.repository.ExRateRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
@@ -21,7 +22,7 @@ public class ExRateService {
     private final ForexApiConfig forexApiConfig;
 
     public ExRateService(ExRateRepository exRateRepository,
-                         RestClient restClient,
+                         @Qualifier("forexRestClient") RestClient restClient,
                          ForexApiConfig forexApiConfig) {
         this.exRateRepository = exRateRepository;
         this.restClient = restClient;
@@ -81,7 +82,7 @@ public class ExRateService {
     public BigDecimal convert(String from, String to, BigDecimal amount) {
         return findExRate(from, to)
                 .orElseThrow(() -> new
-                        ObjectNotFoundException("Convertion from " + from + " to " + to + "not possible!"))
+                        ObjectNotFoundException("Conversion from " + from + " to " + to + "not possible!"))
                 .multiply(amount);
 
     }
