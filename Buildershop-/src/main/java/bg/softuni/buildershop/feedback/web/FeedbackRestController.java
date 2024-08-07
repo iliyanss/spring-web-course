@@ -30,7 +30,7 @@ public class FeedbackRestController {
                 .ok(feedbackService.getById(id)
                         .orElseThrow(() -> new IllegalArgumentException("Feedback not found")));
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/remove/{id}")
     public ResponseEntity<AddFeedbackDTO> deleteFeedback(@PathVariable Long id) {
         feedbackService.deleteFeedback(id);
         return ResponseEntity.ok().build();

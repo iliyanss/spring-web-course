@@ -36,6 +36,7 @@
             <a sec:authorize="isAuthenticated()" href="/my-favorites" th:text="#{nav.myFavorites}">My Favorites</a>
             <a sec:authorize="isAuthenticated()" href="/messages/contact" th:text="#{nav.contact}">Contact</a>
             <a sec:authorize="isAuthenticated()" href="/feedback" th:text="#{nav.feedback}">Feedback</a>
+            <a sec:authorize="hasAuthority('ROLE_ADMIN')" href="/feedback/all" th:text="#{nav.allFeedbacks}">All Feedbacks</a>
             <a sec:authorize="hasAuthority('ROLE_ADMIN')" href="/messages/all-messages" th:text="#{nav.allMessages}">All Messages</a>
             <a sec:authorize="hasAuthority('ROLE_ADMIN')" href="/admin/users" th:text="#{nav.userModification}">User Modification</a>
             <a href="/about" th:text="#{nav.about}">About</a>

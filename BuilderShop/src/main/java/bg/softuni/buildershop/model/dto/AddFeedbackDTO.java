@@ -7,21 +7,21 @@ public class AddFeedbackDTO {
 
     private Long id;
 
-    @Size(min = 10, max = 200)
+    @Size(min = 10, max = 700, message = "The length of the text should be between 10 and 700 symbols")
     @NotNull
     private String text;
 
-    public @Size(min = 10, max = 200) @NotNull String getText() {
+    public AddFeedbackDTO() {
+
+    }
+
+    public @Size(min = 10, max = 700, message = "The length of the text should be between 10 and 700 symbols") @NotNull String getText() {
         return text;
     }
 
-    public AddFeedbackDTO setText(@Size(min = 10, max = 200) @NotNull String text) {
+    public AddFeedbackDTO setText(@Size(min = 10, max = 700, message = "The length of the text should be between 10 and 700 symbols") @NotNull String text) {
         this.text = text;
         return this;
-    }
-
-    public AddFeedbackDTO() {
-
     }
 
     public Long getId() {

@@ -16,7 +16,7 @@ public class MessageEntity {
     @Column(nullable = false)
     @Email
     private String email;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "LONGTEXT")
     private String messageText;
     @Column(nullable = false)
     private LocalDateTime createdAt;
