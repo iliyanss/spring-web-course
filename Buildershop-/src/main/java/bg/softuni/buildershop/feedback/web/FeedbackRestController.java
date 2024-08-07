@@ -20,7 +20,7 @@ public class FeedbackRestController {
         feedbackService.addFeedback(addFeedbackDTO);
         return ResponseEntity.ok().build();
     }
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<AddFeedbackDTO>>getAllFeedBacks(){
         return ResponseEntity.ok(feedbackService.getAllFeedBacks());
     }
