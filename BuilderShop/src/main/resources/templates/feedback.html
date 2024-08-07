@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons::head"></head>
+<body>
+<header th:replace="fragments/commons::nav"></header>
+<main>
+    <div class="welcome mt-1 mb-4">
+        <p class="mySticky bg-gray text-dark user">Welcome,
+            <span sec:authorize="isAuthenticated()">
+                <span sec:authentication="name"></span>
+            </span>
+            <span sec:authorize="!isAuthenticated()">
+                Anonymous!
+            </span>
+        </p>
+        <div class="contact-section">
+            <h2>Provide a feedback</h2>
+            <form th:action="@{/feedback}" th:object="${addFeedbackDTO}" th:method="post">
+                    <label for="text">Feedback message:</label>
+                    <textarea
+                            th:field="*{text}"
+                            th:errorclass="'is-invalid bg-danger'"
+                            id="text"
+                            class="form-control"
+                            rows="4"
+                            required></textarea>
+                    <small th:if="${#fields.hasErrors('text')}"
+                           th:errors="*{text}"
+                           class="text-danger">Text error message</small>
+                <button th:href="@{|/feedback|}" type="submit" class="btn btn-primary">Send</button>
+            </form>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/commons::footer"></footer>
+<!-- Styles for contact section -->
+<style>
+    .contact-section {
+        background-color: #f4f4f4;
+        padding: 20px;
+        border-radius: 5px;
+    }
+    .contact-section h2 {
+        margin-bottom: 15px;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    .form-group button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+    }
+    .form-group button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</body>
+</html>
