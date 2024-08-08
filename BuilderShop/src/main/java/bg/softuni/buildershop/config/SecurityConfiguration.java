@@ -31,6 +31,8 @@ public class SecurityConfiguration {
                                     .requestMatchers("/admin/**").hasRole(UserRoleEnum.ADMIN.name())
                                     .requestMatchers("/messages/all-messages").hasRole(UserRoleEnum.ADMIN.name())
                                     .requestMatchers("/messages/remove/**").hasRole(UserRoleEnum.ADMIN.name())
+                                    .requestMatchers("/feedback/remove/**").hasRole(UserRoleEnum.ADMIN.name())
+                                    .requestMatchers("/feedback/all").hasRole(UserRoleEnum.ADMIN.name())
                                     .anyRequest().authenticated();
                         }
                 )
